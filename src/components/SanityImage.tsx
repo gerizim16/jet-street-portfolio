@@ -7,18 +7,18 @@ import { urlFor } from "@/sanity/lib/image";
 interface SanityImageProps
   extends Pick<
     ComponentProps<typeof Image>,
-    "fill" | "priority" | "quality" | "sizes"
+    "className" | "fill" | "priority" | "quality" | "sizes"
   > {
   alt?: string;
-  url: string;
+  image: { metadata?: null | { lqip?: null | string }; url?: null | string };
 }
 
 export default function SanityImage({
   alt,
   fill,
+  image: { metadata, url },
   quality,
   sizes,
-  url,
   ...props
 }: SanityImageProps) {
   if (!url) return null;
@@ -29,7 +29,7 @@ export default function SanityImage({
       alt={
         alt ?? "An image without an alt, whoopsAn image without an alt, whoops"
       }
-      blurDataURL={urlFor(url).width(24).height(24).blur(10).url()}
+      blurDataURL={metadata?.lqip ?? ""}
       className={fill ? "object-cover" : undefined}
       placeholder="blur"
       quality={quality ?? 80}

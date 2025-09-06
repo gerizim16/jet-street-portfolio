@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
 import "./globals.css";
+import { ReactNode } from "react";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -17,11 +18,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} antialiased relative bg-white`}>{children}</body>
+      <body className={`${geistSans.variable} relative bg-white antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

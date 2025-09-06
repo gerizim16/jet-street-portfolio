@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "bun run typegen",
     "dev": "next dev --turbopack",
+    "prebuild": "bun run typegen",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typegen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.16",
     "@sanity/color-input": "^4.0.6",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
