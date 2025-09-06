@@ -27,7 +27,7 @@ export default async function OpenedImagePreview({
   const { imageKey } = await params;
 
   const imagePreviewQuery = defineQuery(
-    `*[_type == "portfolio"][0].images[_key == "${imageKey}"][0]{asset->{ url, metadata { lqip } }}`,
+    `*[_type == "portfolio"][0].images[_key == "${imageKey}"][0]{asset->{ url, metadata { lqip, dimensions } }}`,
   );
 
   const image = await sanityFetch({
@@ -37,14 +37,21 @@ export default async function OpenedImagePreview({
 
   return (
     <NextModal>
-      <div className="absolute inset-0">
-        <SanityImage
-          className="object-contain p-8"
-          fill
-          image={image.asset}
-          priority
-          quality={100}
-        />
+      <div className="absolute inset-0 max-h-screen max-w-screen">
+        <div
+          className="relative mx-auto max-h-full max-w-full"
+          style={{
+            aspectRatio: image.asset.metadata.dimensions.aspectRatio,
+          }}
+        >
+          <SanityImage
+            className="object-contain"
+            fill
+            image={image.asset}
+            priority
+            quality={100}
+          />
+        </div>
       </div>
     </NextModal>
   );
