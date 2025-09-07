@@ -19,7 +19,7 @@ export default async function Main() {
       <MotionDiv
         animate={{ borderRadius: 0, opacity: 1, scale: 1 }}
         className="relative size-full overflow-clip"
-        initial={{ borderRadius: "25%", opacity: 0, scale: 0.9 }}
+        initial={{ borderRadius: 128, opacity: 0, scale: 0.9 }}
         transition={{ bounce: 0, type: "spring" }}
       >
         <SanityImage
