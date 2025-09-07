@@ -7,7 +7,7 @@ import { urlFor } from "@/sanity/lib/image";
 interface SanityImageProps
   extends Pick<
     ComponentProps<typeof Image>,
-    "className" | "fill" | "priority" | "quality" | "sizes"
+    "className" | "fill" | "priority" | "quality" | "sizes" | "style"
   > {
   alt?: string;
   image: { metadata?: null | { lqip?: null | string }; url?: null | string };

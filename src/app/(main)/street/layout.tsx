@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+import AnimatePresenceClient from "@/components/animation/AnimatePresenceClient";
+
 export default function StreetLayout({
   children,
   imagePreview,
@@ -10,7 +12,7 @@ export default function StreetLayout({
   return (
     <div className="relative">
       {children}
-      {imagePreview}
+      <AnimatePresenceClient>{imagePreview}</AnimatePresenceClient>
     </div>
   );
 }

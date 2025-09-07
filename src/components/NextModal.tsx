@@ -6,10 +6,29 @@ import {
   FloatingPortal,
   useFloating,
 } from "@floating-ui/react";
-import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { ReactNode, useCallback, useEffect } from "react";
 
 export default function NextModal({ children }: { children: ReactNode }) {
   const { context, refs } = useFloating();
+  const { push } = useRouter();
+
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        push("./", { scroll: false });
+      }
+    },
+    [push],
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return (
     <FloatingPortal>

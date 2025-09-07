@@ -1,7 +1,6 @@
 import { defineQuery } from "next-sanity";
-import Link from "next/link";
 
-import SanityImage from "@/components/SanityImage";
+import Gallery from "@/components/Gallery";
 import { sanityFetch } from "@/sanity/lib/client";
 
 export default async function Street() {
@@ -14,20 +13,5 @@ export default async function Street() {
     tags: ["portfolio"],
   });
 
-  return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(500px,1fr))] gap-4 px-4 pt-28">
-      {images!.map(
-        (image) =>
-          image && (
-            <Link
-              className="relative block aspect-video w-full"
-              href={`/street/${image._key}`}
-              key={image._key}
-            >
-              <SanityImage fill image={image.asset!} sizes="700px" />
-            </Link>
-          ),
-      )}
-    </div>
-  );
+  return <Gallery images={images!} />;
 }

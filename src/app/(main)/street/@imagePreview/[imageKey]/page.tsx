@@ -1,5 +1,6 @@
 import { defineQuery } from "next-sanity";
 
+import MotionDiv from "@/components/animation/MotionDiv";
 import NextModal from "@/components/NextModal";
 import SanityImage from "@/components/SanityImage";
 import { sanityFetch } from "@/sanity/lib/client";
@@ -37,22 +38,32 @@ export default async function OpenedImagePreview({
 
   return (
     <NextModal>
-      <div className="absolute inset-0 max-h-screen max-w-screen">
+      <MotionDiv
+        className="absolute inset-0 max-h-screen max-w-screen"
+        layoutId={imageKey}
+      >
         <div
-          className="relative mx-auto max-h-full max-w-full"
+          className="relative mx-auto grid h-full max-h-screen max-w-full place-items-center"
           style={{
             aspectRatio: image.asset.metadata.dimensions.aspectRatio,
           }}
         >
-          <SanityImage
-            className="object-contain"
-            fill
-            image={image.asset}
-            priority
-            quality={100}
-          />
+          <div
+            className="relative max-h-full w-full max-w-screen"
+            style={{
+              aspectRatio: image.asset.metadata.dimensions.aspectRatio,
+            }}
+          >
+            <SanityImage
+              className="object-contain"
+              fill
+              image={image.asset}
+              priority
+              quality={100}
+            />
+          </div>
         </div>
-      </div>
+      </MotionDiv>
     </NextModal>
   );
 }
