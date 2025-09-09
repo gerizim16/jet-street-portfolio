@@ -1,6 +1,7 @@
 "use client";
 import { motion, stagger } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import SanityImage from "@/components/SanityImage";
 
@@ -17,6 +18,8 @@ export default function Gallery({
     };
   }[];
 }) {
+  const pathname = usePathname();
+
   return (
     <motion.div
       animate="animate"
@@ -33,7 +36,7 @@ export default function Gallery({
             >
               <Link
                 className="relative block aspect-video w-full"
-                href={`/street/${image._key}`}
+                href={`${pathname}/${image._key}`}
                 scroll={false}
               >
                 <SanityImage fill image={image.asset!} sizes="700px" />

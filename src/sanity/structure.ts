@@ -1,6 +1,6 @@
 import type { StructureResolver } from "sanity/structure";
 
-const singletonTypes = ["home", "portfolio", "about"];
+const singletonTypes = ["home", "portfolio", "portrait-portfolio", "about"];
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>

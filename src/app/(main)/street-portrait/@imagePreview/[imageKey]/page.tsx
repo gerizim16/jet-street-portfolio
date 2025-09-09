@@ -9,13 +9,13 @@ import SanityImage from "@/components/SanityImage";
 import { sanityFetch } from "@/sanity/lib/client";
 
 export async function generateStaticParams() {
-  const imageKeysQuery = defineQuery(
-    '*[_type == "portfolio"][0].images[]._key',
+  const imageKeysQueryPortrait = defineQuery(
+    '*[_type == "portrait-portfolio"][0].images[]._key',
   );
 
   const keys = await sanityFetch({
-    query: imageKeysQuery,
-    tags: ["portfolio"],
+    query: imageKeysQueryPortrait,
+    tags: ["portrait-portfolio"],
   });
 
   return keys.map((key: string) => ({
@@ -30,10 +30,10 @@ export default async function OpenedImagePreview({
 }) {
   const { imageKey } = await params;
 
-  const imagePreviewQuery = defineQuery(
+  const imagePreviewQueryPortrait = defineQuery(
     `{
-      "image": *[_type == "portfolio"][0].images[_key == "${imageKey}"][0]{asset->{ url, metadata { lqip, dimensions } }},
-      "imageKeys": *[_type == "portfolio"][0].images[]._key,  
+      "image": *[_type == "portrait-portfolio"][0].images[_key == "${imageKey}"][0]{asset->{ url, metadata { lqip, dimensions } }},
+      "imageKeys": *[_type == "portrait-portfolio"][0].images[]._key,  
     }`,
   );
 
@@ -54,8 +54,8 @@ export default async function OpenedImagePreview({
     };
     imageKeys: string[];
   } = await sanityFetch({
-    query: imagePreviewQuery,
-    tags: ["portfolio"],
+    query: imagePreviewQueryPortrait,
+    tags: ["portrait-portfolio"],
   });
 
   const currentIndex = imageKeys.findIndex((key) => key === imageKey);
@@ -102,7 +102,7 @@ export default async function OpenedImagePreview({
         )}
         <Link
           className="absolute top-0 right-0 block p-4 transition-transform hover:scale-90"
-          href="/street"
+          href="/street-portrait"
           scroll={false}
         >
           <X size={32} />
@@ -135,7 +135,7 @@ function ChevronButton({
           direction === "right" && "ml-auto",
           direction === "left" ? "hover:translate-x-3" : "hover:-translate-x-3",
         )}
-        href={`/street/${imageKey}`}
+        href={`/street-portrait/${imageKey}`}
         replace
         scroll={false}
       >

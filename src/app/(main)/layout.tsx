@@ -33,7 +33,7 @@ export default async function MainLayout({ children }: { children: ReactNode }) 
           <div className="grow" />
           <nav className="flex items-stretch">
             <NavButton href="/street">Street</NavButton>
-            {/* <NavButton href="/street-portrait">Street Portrait</NavButton> */}
+            <NavButton href="/street-portrait">Street Portrait</NavButton>
             {/* <NavButton href="/about">About</NavButton> */}
           </nav>
         </div>

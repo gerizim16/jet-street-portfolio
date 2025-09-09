@@ -51,6 +51,27 @@ export type About = {
   };
 };
 
+export type PortraitPortfolio = {
+  _id: string;
+  _type: "portrait-portfolio";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+};
+
 export type Portfolio = {
   _id: string;
   _type: "portfolio";
@@ -247,6 +268,7 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes =
   | About
+  | PortraitPortfolio
   | Portfolio
   | Home
   | Color
@@ -275,6 +297,19 @@ export type HomeQueryResult = {
   } | null;
 } | null;
 
+// Source: ./src/app/(main)/street-portrait/page.tsx
+// Variable: portraitPortfolioQuery
+// Query: *[_type == "portrait-portfolio"][0].images[]{_key, asset->{ url, metadata { lqip } }}
+export type PortraitPortfolioQueryResult = Array<{
+  _key: string;
+  asset: {
+    url: string | null;
+    metadata: {
+      lqip: string | null;
+    } | null;
+  } | null;
+}> | null;
+
 // Source: ./src/app/(main)/street/page.tsx
 // Variable: portfolioQuery
 // Query: *[_type == "portfolio"][0].images[]{_key, asset->{ url, metadata { lqip } }}
@@ -293,6 +328,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "home"][0].image.asset->{ url, metadata { lqip }}': HomeQueryResult;
+    '*[_type == "portrait-portfolio"][0].images[]{_key, asset->{ url, metadata { lqip } }}': PortraitPortfolioQueryResult;
     '*[_type == "portfolio"][0].images[]{_key, asset->{ url, metadata { lqip } }}': PortfolioQueryResult;
   }
 }

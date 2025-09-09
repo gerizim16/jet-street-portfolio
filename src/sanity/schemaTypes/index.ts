@@ -43,6 +43,25 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     defineType({
       fields: [
         defineField({
+          name: "images",
+          of: [
+            {
+              name: "image",
+              type: "image",
+            },
+          ],
+          options: {
+            layout: "grid",
+          },
+          type: "array",
+        }),
+      ],
+      name: "portrait-portfolio",
+      type: "document",
+    }),
+    defineType({
+      fields: [
+        defineField({
           name: "content",
           of: [{ type: "block" }],
           title: "content",
