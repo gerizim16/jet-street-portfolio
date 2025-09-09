@@ -23,7 +23,7 @@ export default function Gallery({
   return (
     <motion.div
       animate="animate"
-      className="grid gap-2 pt-28 sm:grid-cols-[repeat(auto-fit,minmax(500px,1fr))] sm:gap-4 sm:px-4"
+      className="grid gap-2 pt-20 sm:grid-cols-[repeat(auto-fit,minmax(500px,1fr))] sm:gap-4 sm:px-4 sm:pt-28"
       initial="initial"
       transition={{ delayChildren: stagger(0.03) }}
     >

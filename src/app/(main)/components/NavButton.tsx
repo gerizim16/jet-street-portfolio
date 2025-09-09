@@ -18,7 +18,7 @@ export default function NavButton({
       href={href}
       {...props}
     >
-      <div className="invisible px-4 py-2">{children}</div>
+      <div className="invisible p-1 sm:px-4 sm:py-2">{children}</div>
       <div
         className={twMerge(
           "absolute inset-0 mx-auto flex flex-col justify-center text-center transition-all group-hover:font-bold",

@@ -25,10 +25,15 @@ export default async function MainLayout({ children }: { children: ReactNode }) 
           color: hex,
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-stretch gap-4">
-          <Link className="block text-center uppercase" href="/">
-            <h1 className="text-3xl font-bold">{title}</h1>
-            <h2 className="font-semibold">Street Photography</h2>
+        <div className="mx-auto flex max-w-7xl items-stretch gap-2">
+          <Link
+            className="block text-center whitespace-nowrap uppercase"
+            href="/"
+          >
+            <h1 className="text-xl font-bold sm:text-3xl">{title}</h1>
+            <h2 className="text-xs font-semibold sm:text-base">
+              Street Photography
+            </h2>
           </Link>
           <div className="grow" />
           <nav className="flex items-stretch">
